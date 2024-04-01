@@ -1,2 +1,4 @@
-package YapBoard.service;public interface UserService {
+package YapBoard.service;
+
+public interface UserService {
 }

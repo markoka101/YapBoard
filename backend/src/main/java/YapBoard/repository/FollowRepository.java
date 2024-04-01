@@ -1,4 +1,4 @@
 package YapBoard.repository;
 
-public class RoleRepository {
+public class FollowRepository {
 }

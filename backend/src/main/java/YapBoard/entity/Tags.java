@@ -1,0 +1,26 @@
+package YapBoard.entity;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.Set;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "TAGS")
+public class Tags {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NonNull
+    @Column
+    private String tag;
+
+    @OneToMany(mappedBy = "posts",cascade = CascadeType.ALL)
+    Set<Posts> posts;
+}

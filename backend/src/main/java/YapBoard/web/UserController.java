@@ -1,2 +1,4 @@
-package YapBoard.web;public class UserController {
+package YapBoard.web;
+
+public class UserController {
 }

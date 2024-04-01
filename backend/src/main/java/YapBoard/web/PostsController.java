@@ -1,2 +1,4 @@
-package YapBoard.web;public class PostsController {
+package YapBoard.web;
+
+public class PostsController {
 }

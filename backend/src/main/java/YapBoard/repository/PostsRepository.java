@@ -1,2 +1,4 @@
-package YapBoard.repository;public class PostsRepository {
+package YapBoard.repository;
+
+public class PostsRepository {
 }

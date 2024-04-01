@@ -1,2 +1,4 @@
-package YapBoard.service;public class UserServiceImpl {
+package YapBoard.service;
+
+public class UserServiceImpl {
 }

@@ -1,2 +1,4 @@
-package YapBoard.service;public class SchedualedTaskService {
+package YapBoard.service;
+
+public class SchedualedTaskService {
 }

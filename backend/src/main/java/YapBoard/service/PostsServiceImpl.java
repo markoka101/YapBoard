@@ -1,2 +1,4 @@
-package YapBoard.service;public class PostsServiceImpl {
+package YapBoard.service;
+
+public class PostsServiceImpl {
 }
