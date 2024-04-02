@@ -21,6 +21,6 @@ public class Tags {
     @Column
     private String tag;
 
-    @OneToMany(mappedBy = "posts",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "tags",cascade = CascadeType.ALL)
     Set<Posts> posts;
 }
