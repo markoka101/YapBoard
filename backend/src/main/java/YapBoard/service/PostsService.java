@@ -8,7 +8,7 @@ public interface PostsService {
     //modifying posts
     void createPost(Posts posts);
     void editPost(Posts posts);
-    void deletePost(Posts post);
+    void deletePost(Long id);
 
     //getting posts
     List<Posts> getUserPosts(Long userId, int page);
