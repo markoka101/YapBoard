@@ -1,9 +1,13 @@
 package YapBoard.service;
 
 import YapBoard.entity.User;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
+@AllArgsConstructor
 public class UserServiceImpl implements UserService{
     @Override
     public void saveUser(User user) {

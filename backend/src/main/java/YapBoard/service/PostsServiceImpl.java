@@ -1,9 +1,13 @@
 package YapBoard.service;
 
 import YapBoard.entity.Posts;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
+@AllArgsConstructor
 public class PostsServiceImpl implements PostsService{
     @Override
     public void createPost(Posts posts) {
@@ -16,7 +20,7 @@ public class PostsServiceImpl implements PostsService{
     }
 
     @Override
-    public void deletePost(Posts post) {
+    public void deletePost(Long id) {
 
     }
 

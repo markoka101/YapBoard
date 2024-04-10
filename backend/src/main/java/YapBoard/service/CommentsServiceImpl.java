@@ -1,9 +1,13 @@
 package YapBoard.service;
 
 import YapBoard.entity.Comments;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
+@AllArgsConstructor
 public class CommentsServiceImpl implements CommentsService{
     @Override
     public void createComment(Comments comments) {

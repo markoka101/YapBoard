@@ -1,9 +1,13 @@
 package YapBoard.service;
 
 import YapBoard.entity.Like;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
+@AllArgsConstructor
 public class LikeServiceImpl implements LikeService{
     @Override
     public void likePost(Like like) {
