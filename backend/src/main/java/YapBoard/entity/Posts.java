@@ -36,7 +36,7 @@ public class Posts {
     @Column
     private Date date;
 
-    @OneToMany(mappedBy = "tag",cascade = CascadeType.ALL)
+    @ManyToMany
     Set<Tags> tags;
 
     @OneToMany(mappedBy = "post",cascade = CascadeType.ALL)
