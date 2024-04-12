@@ -10,7 +10,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "TAGS")
+@Table(name = "tags")
 public class Tags {
 
     @Id

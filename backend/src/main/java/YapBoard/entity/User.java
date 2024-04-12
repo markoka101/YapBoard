@@ -15,7 +15,7 @@ import java.util.*;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @Entity
-@Table(name="USERS")
+@Table(name="users")
 public class User implements UserDetails {
 
     @Id
