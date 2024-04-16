@@ -1,7 +1,10 @@
 package YapBoard.service;
 
+import YapBoard.entity.Role;
 import YapBoard.entity.User;
+import YapBoard.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,9 +12,21 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class UserServiceImpl implements UserService{
+
+    private UserRepository userRepository;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private FollowService followService;
+
+
     @Override
     public void saveUser(User user) {
+        //encode password
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 
+        //set user role
+        user.addRole(new Role(2L));
+
+        userRepository.save(user);
     }
 
     @Override
