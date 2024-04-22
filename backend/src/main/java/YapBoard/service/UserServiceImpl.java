@@ -2,12 +2,14 @@ package YapBoard.service;
 
 import YapBoard.entity.Role;
 import YapBoard.entity.User;
+import YapBoard.repository.RoleRepository;
 import YapBoard.repository.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -15,8 +17,6 @@ public class UserServiceImpl implements UserService{
 
     private UserRepository userRepository;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-    private FollowService followService;
-
 
     @Override
     public void saveUser(User user) {
@@ -31,17 +31,20 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User getUser(Long id) {
-        return null;
+        Optional<User> user = userRepository.findById(id);
+        return unwrapUser(user);
     }
 
     @Override
     public User getUser(String username) {
-        return null;
+        Optional<User> user = userRepository.findByUsername(username);
+        return unwrapUser(user);
     }
 
     @Override
     public User getUserEmail(String email) {
-        return null;
+        Optional<User> user = userRepository.findByEmail(email);
+        return unwrapUser(user);
     }
 
     @Override
@@ -82,5 +85,13 @@ public class UserServiceImpl implements UserService{
     @Override
     public void deleteUser(Long id) {
 
+    }
+
+    static User unwrapUser(Optional<User> entity) {
+        if (entity.isPresent()) {
+            return entity.get();
+        } else {
+            throw new EntityNotFoundException("User not found");
+        }
     }
 }
