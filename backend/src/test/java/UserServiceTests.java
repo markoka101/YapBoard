@@ -86,6 +86,10 @@ public class UserServiceTests {
     @Test
     public void editUsername() {
         userRepository.save(user);
+
+        given(userRepository.findById(user.getId()))
+                .willReturn(Optional.of((user)));
+
         userService.editUsername(user.getId(),"edited");
         assertThat(user.getUsername()).isEqualTo("edited");
     }
@@ -95,6 +99,10 @@ public class UserServiceTests {
     public void editEmail() {
         user.setEmail("delete@gmail.com");
         userRepository.save(user);
+
+        given(userRepository.findById(user.getId()))
+                .willReturn(Optional.of(user));
+
         userService.deleteEmail(user.getId());
         assertThat(user.getEmail()).isNull();
     }
@@ -103,6 +111,10 @@ public class UserServiceTests {
     @Test
     public void setEmail() {
         userRepository.save(user);
+
+        given(userRepository.findById(user.getId()))
+                .willReturn(Optional.of(user));
+
         userService.setUserEmail(user.getId(),"newEmail@gmail.com");
 
         assertThat(user.getEmail()).isEqualTo("newEmail@gmail.com");
