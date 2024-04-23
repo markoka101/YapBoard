@@ -1,7 +1,4 @@
-import YapBoard.YapBoardApplication;
-import YapBoard.entity.Role;
 import YapBoard.entity.User;
-import YapBoard.repository.RoleRepository;
 import YapBoard.repository.UserRepository;
 import YapBoard.service.UserServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,7 +12,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Import;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
@@ -30,9 +26,6 @@ public class UserServiceTests {
 
     @Mock
     private UserRepository userRepository;
-    @Mock
-    private RoleRepository roleRepository;
-
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -49,13 +42,12 @@ public class UserServiceTests {
                 .id(1L)
                 .username("testuser")
                 .password("password123")
-                .email("testuser@gmail.com")
                 .build();
 
         userService = new UserServiceImpl(userRepository,bCryptPasswordEncoder());
     }
 
-    @DisplayName("Check get user methods")
+    @DisplayName("get user by id")
     @Test
     public void findUserMethods() {
 
@@ -64,14 +56,55 @@ public class UserServiceTests {
         given(userRepository.findById(user.getId()))
                 .willReturn(Optional.of(user));
 
+        assertThat(userService.getUser(1L)).isEqualTo(user);
+    }
+
+    @DisplayName(("get user by email"))
+    @Test
+    public void findByEmail() {
+
+        user.setEmail("testuser@gmail.com");
+        userRepository.save(user);
+
         given(userRepository.findByEmail(user.getEmail()))
                 .willReturn(Optional.of(user));
+
+        assertThat(userService.getUserEmail("testuser@gmail.com")).isEqualTo(user);
+    }
+
+    @DisplayName("get user by username")
+    @Test
+    public void findByUsername() {
+        userRepository.save(user);
 
         given(userRepository.findByUsername(user.getUsername()))
                 .willReturn(Optional.of(user));
 
-        assertThat(userService.getUser(1L)).isEqualTo(user);
-        assertThat(userService.getUserEmail("testuser@gmail.com")).isEqualTo(user);
         assertThat(userService.getUser("testuser")).isEqualTo(user);
+    }
+    @DisplayName("edit username")
+    @Test
+    public void editUsername() {
+        userRepository.save(user);
+        userService.editUsername(user.getId(),"edited");
+        assertThat(user.getUsername()).isEqualTo("edited");
+    }
+
+    @DisplayName("delete user email")
+    @Test
+    public void editEmail() {
+        user.setEmail("delete@gmail.com");
+        userRepository.save(user);
+        userService.deleteEmail(user.getId());
+        assertThat(user.getEmail()).isNull();
+    }
+
+    @DisplayName("set user email")
+    @Test
+    public void setEmail() {
+        userRepository.save(user);
+        userService.setUserEmail(user.getId(),"newEmail@gmail.com");
+
+        assertThat(user.getEmail()).isEqualTo("newEmail@gmail.com");
     }
 }
