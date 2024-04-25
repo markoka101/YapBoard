@@ -2,7 +2,6 @@ package YapBoard.service;
 
 import YapBoard.entity.Role;
 import YapBoard.entity.User;
-import YapBoard.repository.RoleRepository;
 import YapBoard.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
@@ -49,7 +48,11 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void editUsername(Long id, String updatedName) {
+        Optional<User> user = userRepository.findById(id);
+        User unwrapped = unwrapUser(user);
 
+        unwrapped.setUsername(updatedName);
+        userRepository.save(unwrapped);
     }
 
     @Override
