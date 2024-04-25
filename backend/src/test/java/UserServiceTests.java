@@ -119,4 +119,26 @@ public class UserServiceTests {
 
         assertThat(user.getEmail()).isEqualTo("newEmail@gmail.com");
     }
+    @DisplayName("get all users with pagination")
+    @Test
+    public void getAllUsers() {
+    }
+
+    @DisplayName("search users with pagination")
+    @Test
+    public void searchUsers() {
+
+    }
+
+    @DisplayName("look at user followers with pagination")
+    @Test
+    public void searchFollowers(){
+
+    }
+
+    @DisplayName("look at user followed with pagination")
+    @Test
+    public void searchFollowed() {
+
+    }
 }
