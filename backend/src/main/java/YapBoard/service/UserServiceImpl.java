@@ -60,12 +60,17 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void setUserEmail(Long id, String email) {
-
+        Optional<User> user = userRepository.findById(id);
+        User unwrapped = unwrapUser(user);
+        unwrapped.setEmail(email);
     }
 
     @Override
     public void deleteEmail(Long id) {
-
+        Optional<User> user = userRepository.findById(id);
+        User unwrapped = unwrapUser(user);
+        unwrapped.setEmail(null);
+        userRepository.save(unwrapped);
     }
 
     @Override
