@@ -30,7 +30,7 @@ public class LikeServiceImpl implements LikeService{
     }
 
     @Override
-    public List<Like> getPostLikes(Long postId, int page) {
+    public List<Like> getPostLikes(Long postId, int page, String sortBy, String direction) {
         return null;
     }
 }
