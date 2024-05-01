@@ -25,7 +25,7 @@ public class PostsServiceImpl implements PostsService{
     }
 
     @Override
-    public List<Posts> getUserPosts(Long userId, int page) {
+    public List<Posts> getUserPosts(Long userId, int page, String direction) {
         return null;
     }
 
@@ -35,17 +35,17 @@ public class PostsServiceImpl implements PostsService{
     }
 
     @Override
-    public List<Posts> getPostsByTitle(String title, int page) {
+    public List<Posts> getPostsByTitle(String title, int page, String direction) {
         return null;
     }
 
     @Override
-    public List<Posts> getFollowedPosts(Long userId, int page) {
+    public List<Posts> getFollowedPosts(Long userId, int page, String direction) {
         return null;
     }
 
     @Override
-    public List<Posts> getByTag(String tag, int page) {
+    public List<Posts> getByTag(String tag, int page, String direction) {
         return null;
     }
 }

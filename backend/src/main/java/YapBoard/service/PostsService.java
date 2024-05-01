@@ -11,10 +11,10 @@ public interface PostsService {
     void deletePost(Long id);
 
     //getting posts
-    List<Posts> getUserPosts(Long userId, int page);
+    List<Posts> getUserPosts(Long userId, int page, String direction);
     List<Posts> getAllPosts(int page);
-    List<Posts> getPostsByTitle(String title, int page);
-    List<Posts> getFollowedPosts(Long userId, int page);
-    List<Posts> getByTag(String tag, int page);
+    List<Posts> getPostsByTitle(String title, int page, String direction);
+    List<Posts> getFollowedPosts(Long userId, int page, String direction);
+    List<Posts> getByTag(String tag, int page, String direction);
 
 }

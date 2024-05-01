@@ -19,10 +19,10 @@ UserService {
     void deleteEmail(Long id);
 
     //searching users
-    List<User> getAllUsers(int page);
-    List<User> searchUsers(String name, int page);
-    List<User> followedUsers(Long id, int page);
-    List<User> usersFollowing(Long id, int page);
+    List<User> getAllUsers(int page, String sortBy, String direction);
+    List<User> searchUsers(String name, int page, String sortBy, String direction);
+    List<User> followedUsers(Long id, int page, String sortBy, String direction);
+    List<User> usersFollowing(Long id, int page, String sortBy, String direction);
 
     //delete user
     void deleteUser(Long id);

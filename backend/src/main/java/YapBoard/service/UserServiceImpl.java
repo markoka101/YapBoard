@@ -74,24 +74,24 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public List<User> getAllUsers(int page) {
+    public List<User> getAllUsers(int page, String sortBy, String direction) {
         Pageable pageable = PageRequest.of(page,5);
         Page<User> users = userRepository.findAll(pageable);
         return users.getContent();
     }
 
     @Override
-    public List<User> searchUsers(String name, int page) {
+    public List<User> searchUsers(String name, int page, String sortBy, String direction) {
         return null;
     }
 
     @Override
-    public List<User> followedUsers(Long id, int page) {
+    public List<User> followedUsers(Long id, int page, String sortBy, String direction) {
         return null;
     }
 
     @Override
-    public List<User> usersFollowing(Long id, int page) {
+    public List<User> usersFollowing(Long id, int page, String sortBy, String direction) {
         return null;
     }
 
