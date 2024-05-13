@@ -23,7 +23,6 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
@@ -186,7 +185,12 @@ public class UserServiceTests {
     @DisplayName("search users with pagination")
     @Test
     public void searchUsers() {
+        userRepository.saveAll(users);
+        Pageable paging = PageRequest.of(0,5, Sort.by(Sort.Direction.ASC,"id"));
+        given(userRepository.findByUsernameLike("tes",paging))
+                .willReturn(usersPage);
 
+        assertThat(userService.searchUsers("tes",0,"id","asc")).isEqualTo(usersPage.getContent());
     }
 
     @DisplayName("look at user followers with pagination")
