@@ -1,4 +1,5 @@
 import YapBoard.entity.User;
+import YapBoard.repository.FollowRepository;
 import YapBoard.repository.UserRepository;
 import YapBoard.service.UserServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,6 +31,8 @@ public class UserServiceTests {
 
     @Mock
     private UserRepository userRepository;
+    @Mock
+    private FollowRepository followRepository;
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -94,7 +97,7 @@ public class UserServiceTests {
 
         users = Arrays.asList(user,user2,user3,user4,user5,user6,user7);
         usersPage = new PageImpl<>(users);
-        userService = new UserServiceImpl(userRepository,bCryptPasswordEncoder());
+        userService = new UserServiceImpl(userRepository,bCryptPasswordEncoder(),followRepository);
     }
 
 

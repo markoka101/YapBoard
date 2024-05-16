@@ -1,6 +1,7 @@
 package YapBoard.service;
 
 import YapBoard.entity.Posts;
+import YapBoard.repository.PostsRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +10,8 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class PostsServiceImpl implements PostsService{
+    private PostsRepository postsRepository;
+    private UserService userService;
     @Override
     public void createPost(Posts posts) {
 
