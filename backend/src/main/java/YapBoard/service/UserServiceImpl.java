@@ -2,6 +2,7 @@ package YapBoard.service;
 
 import YapBoard.entity.Role;
 import YapBoard.entity.User;
+import YapBoard.repository.FollowRepository;
 import YapBoard.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
@@ -20,6 +21,7 @@ public class UserServiceImpl implements UserService{
 
     private UserRepository userRepository;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private FollowRepository followRepository;
 
     //save user to repo
     @Override
