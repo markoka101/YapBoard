@@ -57,11 +57,17 @@ public class PostsServiceTests {
     public void setUp() {
         postsRepository = Mockito.mock(PostsRepository.class);
         userRepository = Mockito.mock(UserRepository.class);
+
+        user = User.builder()
+                .id(1L)
+                .username("testuser1")
+                .password("password")
+                .build();
     }
 
     @DisplayName("Create post")
     @Test
-    public void createUser(){}
+    public void createPost(){}
 
     @DisplayName("Edit post")
     @Test
