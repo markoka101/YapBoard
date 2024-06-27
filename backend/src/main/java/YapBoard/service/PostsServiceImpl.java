@@ -2,6 +2,7 @@ package YapBoard.service;
 
 import YapBoard.entity.Posts;
 import YapBoard.entity.Tags;
+import YapBoard.entity.User;
 import YapBoard.repository.PostsRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
@@ -19,7 +20,13 @@ public class PostsServiceImpl implements PostsService{
 
     //create post
     @Override
-    public void createPost(Posts posts) {
+    public void createPost(Posts posts,Long userId) {
+
+        //set the user for the post
+        User user = userService.getUser(userId);
+        posts.setUser(user);
+
+        //check if all the tags exist in list, if not create it
         if (posts.getTags() != null) {
             for (Tags t : posts.getTags()) {
                 if (!tagsService.tagExists(t.getTag())) {

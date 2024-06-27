@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface PostsService {
     //modifying posts
-    void createPost(Posts posts);
+    void createPost(Posts posts,Long userId);
     void editPost(Posts posts);
     void deletePost(Long id);
 
