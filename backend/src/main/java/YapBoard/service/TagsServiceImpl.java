@@ -4,6 +4,10 @@ import YapBoard.entity.Posts;
 import YapBoard.entity.Tags;
 import YapBoard.repository.TagsRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,8 +25,17 @@ public class TagsServiceImpl implements TagsService{
 
     //find all tags
     @Override
-    public List<Tags> getAllTags() {
-        return tagsRepository.findAll();
+    public List<Tags> getAllTags(int page,String direction) {
+        Pageable pageable;
+
+        //how it will be sorted
+        if (direction.equals("asc")) {
+            pageable = PageRequest.of(page,10,Sort.by(Sort.Direction.ASC,"tag"));
+        } else {
+            pageable = PageRequest.of(page,10,Sort.by(Sort.Direction.DESC,"tag"));
+        }
+        Page<Tags> tagPage = tagsRepository.findAll(pageable);
+        return tagPage.getContent();
     }
 
     //see if tag exists
