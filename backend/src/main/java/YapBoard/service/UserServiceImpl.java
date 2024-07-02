@@ -128,6 +128,11 @@ public class UserServiceImpl implements UserService{
         return null;
     }
 
+    @Override
+    public boolean isFollowing(int userId,int followId) {
+        return false;
+    }
+
     //delete user
     @Override
     public void deleteUser(Long id) {

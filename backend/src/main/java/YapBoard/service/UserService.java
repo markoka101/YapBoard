@@ -24,6 +24,9 @@ UserService {
     List<User> followedUsers(Long id, int page, String sortBy, String direction);
     List<User> usersFollowing(Long id, int page, String sortBy, String direction);
 
+    //check if user is following
+    boolean isFollowing(int userId,int followId);
+
     //delete user
     void deleteUser(Long id);
 }
