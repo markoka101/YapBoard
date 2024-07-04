@@ -10,7 +10,7 @@ public interface LikeService {
     void deleteLiked(Like like);
 
     //accessing likes
-    boolean isLiked(Like like);
-    List<Like> getLikedPosts(Long userId, int page);
-    List<Like> getPostLikes(Long postId, int page, String sortBy, String direction);
+    boolean isLiked(Long userId,Long postId);
+    List<Like> getLikedPosts(Long userId, int page, String direction);
+    List<Like> getPostLikes(Long postId, int page, String direction);
 }
