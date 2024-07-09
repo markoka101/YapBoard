@@ -2,7 +2,6 @@ package YapBoard.service;
 
 import YapBoard.entity.Role;
 import YapBoard.entity.User;
-import YapBoard.repository.FollowRepository;
 import YapBoard.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
@@ -21,7 +20,7 @@ public class UserServiceImpl implements UserService{
 
     private UserRepository userRepository;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-    private FollowRepository followRepository;
+    private FollowService followService;
 
     //save user to repo
     @Override
@@ -129,8 +128,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public boolean isFollowing(int userId,int followId) {
-        return false;
+    public boolean isFollowing(Long userId,Long followId) {
+        return followService.followExists(userId,followId);
     }
 
     //delete user
