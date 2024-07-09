@@ -42,7 +42,7 @@ public class TagsServiceImpl implements TagsService{
     @Override
     public boolean tagExists(String tags) {
         Tags tag = unwrapTag(tagsRepository.findByTag(tags));
-        return tags == null;
+        return tags != null;
     }
 
     //add post set in tags
