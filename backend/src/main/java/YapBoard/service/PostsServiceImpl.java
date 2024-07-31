@@ -6,6 +6,10 @@ import YapBoard.entity.User;
 import YapBoard.repository.PostsRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,7 +45,8 @@ public class PostsServiceImpl implements PostsService{
     //edit post
     @Override
     public void editPost(Posts posts) {
-
+        //save the changes made to post
+        postsRepository.save(posts);
     }
 
     //delete post
@@ -55,13 +60,28 @@ public class PostsServiceImpl implements PostsService{
     //get posts by user
     @Override
     public List<Posts> getUserPosts(Long userId, int page, String direction) {
-        return null;
+        Pageable pageable;
+        if (direction.equals("asc"))  {
+            pageable = PageRequest.of(page,10, Sort.by(Sort.Direction.ASC));
+        } else {
+            pageable = PageRequest.of(page,10, Sort.by(Sort.Direction.DESC));
+        }
+
+        Page<Posts> posts = postsRepository.findByUser(userId,pageable);
+
+        if (posts == null) {
+            return null;
+        }
+        return posts.getContent();
     }
 
     //get every post
     @Override
     public List<Posts> getAllPosts(int page) {
-        return null;
+        Pageable pageable = PageRequest.of(page,10,Sort.by(Sort.Direction.DESC));
+        Page<Posts> posts = postsRepository.findAll(pageable);
+
+        return posts.getContent();
     }
 
     //get posts by title
