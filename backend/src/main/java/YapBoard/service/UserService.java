@@ -1,5 +1,6 @@
 package YapBoard.service;
 
+import YapBoard.entity.Follow;
 import YapBoard.entity.User;
 
 import java.util.List;
@@ -21,8 +22,8 @@ UserService {
     //searching users
     List<User> getAllUsers(int page, String sortBy, String direction);
     List<User> searchUsers(String name, int page, String sortBy, String direction);
-    List<User> followedUsers(Long id, int page, String sortBy, String direction);
-    List<User> usersFollowing(Long id, int page, String sortBy, String direction);
+    List<Follow> followedUsers(Long id, int page, String direction);
+    List<Follow> usersFollowing(Long id, int page, String direction);
 
     //check if user is following
     boolean isFollowing(Long userId,Long followId);

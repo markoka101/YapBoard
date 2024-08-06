@@ -1,5 +1,6 @@
 package YapBoard.service;
 
+import YapBoard.entity.Follow;
 import YapBoard.entity.Role;
 import YapBoard.entity.User;
 import YapBoard.repository.UserRepository;
@@ -118,15 +119,23 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public List<User> followedUsers(Long id, int page, String sortBy, String direction) {
-        return null;
+    public List<Follow> followedUsers(Long id, int page, String direction) {
+        Pageable pageable;
+        if  (direction.equals("asc")) {
+            pageable = PageRequest.of(page,5,Sort.by(Sort.Direction.ASC));
+        } else {
+            pageable  = PageRequest.of(page,5,Sort.by(Sort.Direction.DESC));
+        }
+       return followService.followers(id,pageable);
+
     }
 
     @Override
-    public List<User> usersFollowing(Long id, int page, String sortBy, String direction) {
+    public List<Follow> usersFollowing(Long id, int page, String direction) {
         return null;
     }
 
+    //check if user is following someone
     @Override
     public boolean isFollowing(Long userId,Long followId) {
         return followService.followExists(userId,followId);
