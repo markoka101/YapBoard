@@ -132,7 +132,14 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public List<Follow> usersFollowing(Long id, int page, String direction) {
-        return null;
+        Pageable pageable;
+        if  (direction.equals("asc")) {
+            pageable = PageRequest.of(page,5,Sort.by(Sort.Direction.ASC));
+        } else {
+            pageable  = PageRequest.of(page,5,Sort.by(Sort.Direction.DESC));
+        }
+
+        return followService.following(id,pageable);
     }
 
     //check if user is following someone
