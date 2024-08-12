@@ -23,6 +23,7 @@ public class FollowServiceImpl implements FollowService {
         followRepository.delete(follow);
     }
 
+    //check if user is following
     @Override
     public boolean followExists(Long userId, Long id) {
         return followRepository.findByUserAndFollowing(userId,id).isPresent();
@@ -36,5 +37,15 @@ public class FollowServiceImpl implements FollowService {
         }
 
         return followPage.getContent();
+    }
+
+    @Override
+    public List<Follow> following(Long userId, Pageable pageable)  {
+        Page<Follow> followingPage = followRepository.findByFollowing(userId,pageable);
+        if (followingPage == null) {
+            return null;
+        }
+
+        return followingPage.getContent();
     }
 }

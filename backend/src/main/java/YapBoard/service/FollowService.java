@@ -13,4 +13,6 @@ public interface FollowService {
     boolean followExists(Long userId, Long id);
     //get list of followers
     List<Follow> followers(Long userId, Pageable pageable);
+    //get list of following
+    List<Follow> following(Long userId, Pageable pageable);
 }
