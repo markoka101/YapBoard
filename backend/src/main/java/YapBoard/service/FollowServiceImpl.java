@@ -13,11 +13,13 @@ import java.util.List;
 @AllArgsConstructor
 public class FollowServiceImpl implements FollowService {
     private FollowRepository followRepository;
+    //save follow to repo
     @Override
     public void followUser(Follow follow) {
         followRepository.save(follow);
     }
 
+    //delete follow
     @Override
     public void unfollow(Follow follow) {
         followRepository.delete(follow);
@@ -29,6 +31,7 @@ public class FollowServiceImpl implements FollowService {
         return followRepository.findByUserAndFollowing(userId,id).isPresent();
     }
 
+    //check followers of user
     @Override
     public List<Follow> followers(Long userId, Pageable pageable) {
         Page<Follow> followPage = followRepository.findByUser(userId,pageable);
@@ -39,6 +42,7 @@ public class FollowServiceImpl implements FollowService {
         return followPage.getContent();
     }
 
+    //check who user is following
     @Override
     public List<Follow> following(Long userId, Pageable pageable)  {
         Page<Follow> followingPage = followRepository.findByFollowing(userId,pageable);

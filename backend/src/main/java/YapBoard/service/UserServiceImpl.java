@@ -118,6 +118,7 @@ public class UserServiceImpl implements UserService{
         return users.getContent();
     }
 
+    //returns list of user's followers
     @Override
     public List<Follow> followedUsers(Long id, int page, String direction) {
         Pageable pageable;
@@ -130,6 +131,7 @@ public class UserServiceImpl implements UserService{
 
     }
 
+    //return list of who user is following
     @Override
     public List<Follow> usersFollowing(Long id, int page, String direction) {
         Pageable pageable;
