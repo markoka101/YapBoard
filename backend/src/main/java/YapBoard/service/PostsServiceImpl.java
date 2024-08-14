@@ -87,7 +87,18 @@ public class PostsServiceImpl implements PostsService{
     //get posts by title
     @Override
     public List<Posts> getPostsByTitle(String title, int page, String direction) {
-        return null;
+        Pageable pageable;
+        if (direction.equals("asc")) {
+            pageable = PageRequest.of(page,10,Sort.by(Sort.Direction.ASC));
+        } else {
+            pageable = PageRequest.of(page,10,Sort.by(Sort.Direction.DESC));
+        }
+
+        Page<Posts> posts = postsRepository.findByTitleLike(title,pageable);
+        if (posts == null)  {
+            return null;
+        }
+        return posts.getContent();
     }
 
     //get posts from followed users
